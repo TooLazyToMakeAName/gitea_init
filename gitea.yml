@@ -107,24 +107,12 @@ spec:
           volumeMounts:
             - name: gitea-data
               mountPath: /data
-            - name: timezone
-              mountPath: /etc/timezone
-              subPath: timezone
-            - name: localtime
-              mountPath: /etc/localtime
-              subPath: localtime
+
       volumes:
         - name: gitea-data
           persistentVolumeClaim:
             claimName: gitea-data
-        - name: timezone
-          hostPath:
-            path: /etc/timezone
-            type: File
-        - name: localtime
-          hostPath:
-            path: /etc/localtime
-            type: File
+
 
 apiVersion: v1
 kind: Service
