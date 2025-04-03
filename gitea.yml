@@ -3,6 +3,7 @@ kind: Namespace
 metadata:
   name: gitea
 ---
+
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -70,6 +71,20 @@ spec:
     - port: 5432
   selector:
     app: postgres
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitea
+  namespace: gitea
+spec:
+  ports:
+    - port: 3000
+      targetPort: 3000
+    - port: 22
+      targetPort: 22
+  selector:
+    app: gitea
 ---
 apiVersion: apps/v1
 kind: Deployment
